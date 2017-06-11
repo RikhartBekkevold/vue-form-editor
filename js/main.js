@@ -103,6 +103,7 @@ var app = new Vue({
             this.showModal = 'none'
         },
         clone: function(el){
+            //returns the values to be cloned/deep cloned
             return {
                 type: el.type, label: '',
                 alternatives: [{type: el.type, label: ''}]
