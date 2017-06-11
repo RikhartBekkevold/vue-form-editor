@@ -1,0 +1,196 @@
+/*icons*/
+i {
+    color: black;
+}
+
+.glyphicon {
+    color: black;
+}
+
+.glyphicon-move {
+    color: black;
+}
+
+.glyphicon-remove {
+    color: rgba(175, 47, 47, 0.5);
+    margin-left: 10px;
+}
+
+.fa-clone {
+    margin-left: 10px;
+}
+
+i:hover {
+    color: #852020;
+    cursor: pointer;
+}
+
+
+/*navbar*/
+.navbar {
+    border-radius: 0px;
+    background: #2EB276;
+    /*border-bottom: 1px solid black;*/
+    box-shadow: 0px 0px 20px #888888;
+}
+
+.nav li a {
+    color: #fff;
+}
+
+.nav li a:hover {
+    color: #000;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+
+/*tags*/
+body {
+    background: #f1f1f1;
+    font-family: 'Libre Baskerville', serif;
+    padding-top: 70px;
+    overflow-y: scroll;
+}
+
+span {
+    color: black;
+}
+
+textarea {
+    min-height: 150px;
+}
+
+td, th {
+    padding: 10px;
+}
+
+/*utility*/
+.hide {
+    visibility: hidden;
+    display: none;
+}
+
+
+/*form*/
+#form {
+    min-height: 800px;
+}
+
+#form li input {
+    display: block;
+}
+
+.badge {
+    color: black;
+    background: white;
+}
+
+.question-types:hover {
+    cursor: move;
+    /*opacity: .4;*/
+    background: #F1F1F1;
+    /*height: 60px;*/
+}
+
+.form-control {
+    border: none;
+    padding-left: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.col-lg-11 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.form-control:focus{
+    border-color: #cccccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0px;
+    border-bottom: 1px solid black;
+    border-color: #cccccc;
+}
+
+.question-input {
+    margin-bottom: 20px;
+}
+
+.smoke {
+    background: whitesmoke;
+}
+
+.custom-input {
+    border: 1px solid #ddd;
+    padding-left: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+    background: #42b983;
+    color: white;
+    cursor: pointer;
+    /*opacity: 0.9;*/
+}
+
+.panel-heading span, .panel-heading i {
+    color: white;
+}
+
+.nav-tabs {
+    border-radius: 4px 4px 0px 0px;
+    background: #42b983;
+    /*opacity: 0.9;*/
+}
+
+.nav-tabs li a:hover, .nav-tabs li:hover {
+    background: #ddd;
+    color: #000;
+    border-color: #ddd;
+
+}
+
+
+
+#listitem {
+    height: 60px;
+}
+
+#advlistitem {
+    height: 60px;
+}
+
+/*433f4a*/
+/*975BFF*/
+/*.default-btn {
+    background: #B2301C;
+}
+
+.default-btn:hover {
+    background: #B2301C;
+    opacity: 0.5;
+}
+
+.default-btn:focus {
+    background: #B2301C;
+    opacity: 0.5;
+}*/
+ #right-side-menu {
+    position: fixed;
+    width: inherit;
+    padding-right: 40px;
+}
+
+#left-side-menu {
+    position: fixed;
+    width: inherit;
+    padding-right: 20px;
+}

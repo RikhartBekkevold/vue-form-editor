@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/forms-min.css">
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/mainstyle.css">
+	<link rel="stylesheet" href="css/alternatives.css">
+	<link rel="stylesheet" href="css/components/modal.css">
+	<link rel="stylesheet" href="css/vue.css">
+</head>
+<body>
+
+
+<div id="app" v-cloak>
+
+	<!-- NAVBAR -->
+	<div id="nav-row" class="row">
+	    <nav class="navbar navbar-fixed-top">
+	        <div class="container-fluid">
+	            <div class="navbar-header">
+	                <a class="navbar-brand" href="#">Form editor</a>
+	            </div>
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="#">Home</a></li>
+	                <li><a href="results.html">Results</a></li>
+	                <li><a href="#">Page 2</a></li>
+	                <li><a href="#">Page 3</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+	</div>
+
+
+	<!-- LEFT SIDE MENU -->
+	<div class="row-fluid">
+		<div class="col-lg-3 col-md-3 col-sm-3">
+			<div id="left-side-menu">
+				<div class="panel panel-default">
+					<div class="panel-heading" data-toggle="collapse" data-target="#advancedList">
+						<div class="row">
+							<div class="col-lg-10">
+								<span style="margin-right: 5px;">Avansert</span>
+							</div>
+							<div class="col-lg-2">
+								<i style="margin-top: 5px; margin-left: 10px;" class="glyphicon glyphicon-chevron-down"></i>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body collapse" id="advancedList">
+					    <ul class="list-group">
+							<draggable v-model="advancedList" :clone="clone" :options="{group:{name: 'form', pull: 'clone', put: false, revertClone: false}, sort: false}">
+					            <li id="advlistitem" v-on:click="addQuestion(item.type)" v-for="item in advancedList" class="list-group-item question-types">
+									{{item.type}}
+									<span class="badge">
+										<i class="glyphicon glyphicon-move"></i>
+									</span>
+						        </li>
+							</draggable>
+					    </ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading" style="" data-toggle="collapse" data-target="#list">
+						<div class="row">
+							<div class="col-lg-10">
+								<span style="margin-right: 5px;">Types</span>
+							</div>
+							<div class="col-lg-2">
+								<i style="margin-top: 5px; margin-left: 10px;" class="glyphicon glyphicon-chevron-down"></i>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body collapse in" id="list">
+					    <ul class="list-group">
+							<draggable v-model="list" :clone="clone" :options="{group:{name: 'form', pull: 'clone', put: false, revertClone: false}, sort: false}">
+					            <li id="listitem" v-on:click="addQuestion(item.type)" v-for="item in list" class="list-group-item question-types">
+					                {{item.type}}
+									<span class="badge">
+										<i class="glyphicon glyphicon-move"></i>
+									</span>
+					            </li>
+							</draggable>
+					    </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- FORM -->
+		<div class="col-lg-5 col-md-9 col-sm-9">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#home">Edit</a></li>
+						<li><a data-toggle="tab" href="#menu1">Preview</a></li>
+						<li><a data-toggle="tab" href="#menu2">Templates</a></li>
+						<li><a data-toggle="tab" href="#menu3">Branching</a></li>
+						<li><a data-toggle="tab" href="#menu4">Form</a></li>
+					</ul>
+
+					<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+				    <div style="border-radius: 0px 0px 0px 0px;" class="panel panel-default">
+				        <div id="form" class="panel-body">
+							<ul class="list-group">
+								<draggable v-model="formList" :options="{group: 'form'}" style="min-height: 700px;">
+								   <li v-for="(question, index) in formList" :key="index" class="list-group-item">
+									   <!-- QUESTIONN -->
+										<div v-if="question.type !='Tittel'" class="row" style="margin-bottom: 50px;">
+											<div class="col-lg-11">
+												<input v-model="question.label" type="text" style="margin-left: 10px" class="form-control question-input" placeholder="Skriv et spørsmål her..."></input>
+											</div>
+											<div style="padding-top: 9px;" class="col-lg-1">
+												<div style="border-bottom: 1px solid black" v-on:click="removeQuestion(question)">
+													<i class="glyphicon glyphicon-remove"></i>
+												</div>
+												<div style="padding-top: 10px;" v-on:click="cloneQuestion(question)">
+													<i class="fa fa-clone"></i>
+												</div>
+											</div>
+										</div>
+
+										<!-- TITTEL -->
+										 <div v-if="question.type == 'Tittel'" class="row">
+											 <div class="col-lg-11">
+											 	<input v-model="question.label" type="text" style="margin-left: 10px; font-size: 1.5em;" class="form-control question-input" placeholder="Skriv en tittel her..."></input>
+												<input v-model="question.desclabel" v-bind:class="{hide: toggle}" type="text" style="margin-left: 10px;" class="form-control question-input" placeholder="Legg til en beskrivelse her..."></input>
+											 </div>
+											 <div v-on:click="removeQuestion(question)" style="padding-top: 9px;" class="col-lg-1">
+												 <div style="border-bottom: 1px solid black" v-on:click="removeQuestion(question)">
+ 													<i class="glyphicon glyphicon-remove"></i>
+ 												</div>
+ 												<div style="padding-top: 10px;" v-on:click="cloneQuestion(question)">
+ 													<i class="fa fa-clone"></i>
+ 												</div>
+											 </div>
+										 </div>
+
+										<!-- QUESTIONN ALTERNATIVES -->
+										<div class="row">
+											<div v-for="(alt, index) in question.alternatives" :key="index" class="alternatives" >
+												<!-- RADIOBUTTON -->
+												<div v-if="alt.type == 'Radiobutton'" class="row">
+													<div v-on:click="removeQuestionAlternative(question, alt)" style="padding-top: 9px;" class="col-lg-1">
+														<i class="glyphicon glyphicon-remove"></i>
+													</div>
+													<div style="padding-top: 9px;"  v-on:click="cloneQuestionAlternative(question, alt)" class="col-lg-1">
+														<i style="margin-left: 0px; padding-left: 0px" class="fa fa-clone"></i>
+													</div>
+													<div class="col-lg-1" style="padding-top: 7px;">
+														<input type="radio" name="index"></input>
+													</div>
+													<div class="col-lg-9">
+														<input 	type="text"
+																class="form-control"
+																style="width: 90%"
+																placeholder="alternativ"
+																v-model="alt.label"
+																@keyup.46="alt.label = ''"
+																@keyup.enter="addQuestionAlternative(question)">
+														</input>
+													</div>
+												</div>
+												<!-- CHECKBOX -->
+												<div v-if="alt.type == 'Checkbox'" class="row">
+													<checkbox-question :question="question" :alternatives="alt"></checkbox-question>
+												 </div>
+												<!-- TEXTFIELD -->
+												<div v-if="alt.type == 'Textfield'" class="row textfield">
+													<div v-on:click="removeQuestionAlternative(question, alt)" style="padding-top: 9px;" class="col-lg-1">
+														<i class="glyphicon glyphicon-remove"></i>
+													</div>
+													<div class="col-lg-10">
+														<form class="pure-form">
+															<input type="text" style="width: 100%">
+														</form>
+													</div>
+													<div class="col-lg-1" >
+													</div>
+												</div>
+												<!-- TEXTAREA -->
+												<div v-if="alt.type == 'Textarea'" class="row textarea">
+													<div v-on:click="removeQuestionAlternative(question, alt)" style="padding-top: 9px;" class="col-lg-1">
+														<i class="glyphicon glyphicon-remove"></i>
+													</div>
+													<div class="col-lg-10">
+														<form class="pure-form">
+															<textarea class="pure-input-1-2" style="width: 100%"></textarea>
+														</form>
+													</div>
+													<div class="col-lg-1" >
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<button v-if="question.type == 'Tittel'" v-on:click="toggle = !toggle" style="margin-left: 10px; font-weight: bold;" class="btn btn-default">
+												<i class="fa fa-plus" aria-hidden="true"></i>
+											</button>
+											<button v-if="question.type != 'Tittel'" style="margin-top: 80px; margin-left: 10px;" v-on:click="addQuestionAlternative(question)" class="btn btn-default">Add</button>
+										</div>
+								   </li>
+							   </draggable>
+							</ul>
+				        </div>
+				    </div>
+				</div>
+				<div id="menu1" class="tab-pane fade">
+					<div class="panel panel-default">
+						<div id="form" class="panel-body">
+							<ul class="list-group">
+								<draggable v-model="formList" :options="{group: 'form'}" style="min-height: 700px;">
+								   <li v-for="(question, index) in formList" v-bind:class="{smoke: question.type == 'Tittel'}" :key="index" class="list-group-item">
+									   <!-- QUESTIONN -->
+										<div v-if="question.type != 'Tittel'" class="row" style="margin-bottom: 30px;">
+											<div class="col-lg-11">
+												<div style="font-size: 1.2em; margin-left: 10px;" class="question-input">{{question.label}}</div>
+											</div>
+										</div>
+
+										<!-- TITTEL -->
+										 <div v-if="question.type == 'Tittel'" class="row">
+											 <div class="col-lg-12">
+												 <div style="font-size: 1.6em;">{{question.label}}</div>
+												 <div style="">{{question.desclabel}}</div>
+											 </div>
+											 <!-- <div v-on:click="removeQuestion(question, alt)" style="padding-top: 9px;" class="col-lg-1">
+												 <i class="glyphicon glyphicon-remove"></i>
+											 </div> -->
+										 </div>
+
+										<!-- QUESTIONN ALTERNATIVES -->
+										<div class="row" v-if="question.type != 'Tittel'" style="padding-bottom: 40px;">
+											<div v-for="(alt, index) in question.alternatives" :key="index" class="alternatives" >
+												<!-- RADIOBUTTON -->
+												<div v-if="alt.type == 'Radiobutton'" class="row">
+													<div class="col-lg-1" style="margin-left: 15px">
+														<input style="" type="radio" name="index"></input>
+													</div>
+													<div class="col-lg-10">
+														<div style="width: 90%">{{alt.label}}</div>
+													</div>
+												</div>
+												<!-- CHECKBOX -->
+												<div v-if="alt.type == 'Checkbox'" class="row">
+											        <div class="col-lg-1" style="margin-left: 15px">
+														<!-- the checkbox -->
+											            <input
+											                type="checkbox"
+											                name="index">
+											            </input>
+											        </div>
+											        <div class="col-lg-10">
+														<!-- the label -->
+											            <div
+											               style="width: 90%">
+														   {{alt.label}}
+													   </div>
+											        </div>
+											 	</div>
+												<!-- TEXTFIELD -->
+												<div v-if="alt.type == 'Textfield'" class="row textfield">
+													<div class="col-lg-10"  style="margin-left: 15px">
+														<form class="pure-form">
+															<input type="text" style="width: 100%">
+														</form>
+													</div>
+													<div class="col-lg-1" >
+													</div>
+												</div>
+												<!-- TEXTAREA -->
+												<div v-if="alt.type == 'Textarea'" class="row textarea">
+													<div class="col-lg-10"  style="margin-left: 15px">
+															<form class="pure-form">
+														<!-- <fieldset class="pure-group"> -->
+															<!-- <input type="text" class="pure-input-1-2" placeholder="A title"> -->
+																<textarea class="pure-input-1-2" style="width: 100%"></textarea>
+														<!-- </fieldset> -->
+															</form>
+
+														<!-- <textarea class="form-control custom-input" placeholder=""></textarea> -->
+													</div>
+													<div class="col-lg-1" >
+													</div>
+												</div>
+											</div>
+										</div>
+								   </li>
+							   </draggable>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div id="menu2" class="tab-pane fade">
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+								</h4>
+							</div>
+							<div id="collapse1" class="panel-collapse collapse">
+								<ul class="list-group">
+									<li class="list-group-item">One</li>
+									<li class="list-group-item">Two</li>
+									<li class="list-group-item">Three</li>
+								</ul>
+								<div class="panel-footer">Footer</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="menu3" class="tab-pane fade">
+				</div>
+				<div id="menu4" class="tab-pane fade">
+				</div>
+				</div>
+			</div>
+		</div>	<!-- end middle column -->
+
+		<!-- RIGHT SIDE MENU -->
+		<div class="col-lg-4 hidden-md hidden-sm">
+			<div id="right-side-menu">
+				<div class="panel panel-default">
+			        <div class="panel-heading">Preferances</div>
+			        <div class="panel-body">
+						<!-- <table style="">
+							<tr>
+								<th>Prerequsite</th>
+								<th>Function</th>
+								<th>Key</th>
+							</tr>
+							<tr style="background: whitesmoke;">
+								<td>Input field selected</td>
+								<td>Add new</td>
+								<td>Enter</td>
+							</tr>
+							<tr>
+								<td>None</td>
+								<td>Copy</td>
+								<td>alt + 4</td>
+							</tr>
+							<tr style="background: whitesmoke;">
+								<td>None</td>
+								<td>Delete</td>
+								<td>alt + 3</td>
+							</tr>
+							<tr>
+								<td>None</td>
+								<td>Copy</td>
+								<td>alt + 4</td>
+							</tr>
+						</table> -->
+						{{formList}}
+					</div>
+			    </div>
+			    <ul class="list-group">
+			        <li class="list-group-item">
+						<button @click="showModal = 'delete'" class="btn btn-default default-btn"><i class="glyphicon glyphicon-trash"></i></button>
+					</li>
+					<li class="list-group-item">
+						<button @click="showModal = 'finish'" class="btn btn-default default-btn"><i class="glyphicon glyphicon-share"></i></button>
+				  	</li>
+			    </ul>
+			</div>
+		</div>
+
+		<modal v-if="showModal == 'finish' || showModal == 'delete'" @close="saveForm">
+			<!-- HEADER -->
+			<h3 v-if="showModal == 'finish'" slot="header">
+			Save and proceed?
+			</h3>
+			<h3  v-if="showModal == 'delete'" slot="header" style="text-align: center;">
+			Delete form?
+			</h3>
+			<!-- MAIN -->
+			<p v-if="showModal == 'finish'" style="text-align: center" slot="body">This will save the form</p>
+			<p v-if="showModal == 'delete'" style="text-align: center" slot="body">This will delete the entire form permanently</p>
+			<!-- FOOTER -->
+			<div v-if="showModal == 'delete'" slot="footer">
+				<button class="btn" @click="deleteForm">
+				Confirm
+				</button>
+				<button class="btn" @click="showModal = 'none'">
+				Deny
+				</button>
+			</div>
+		</modal>
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"></script>'
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.11.0/vuedraggable.min.js"></script>
+
+	<!-- <script src="https://cdn.rawgit.com/David-Desmaisons/Vue.Draggable/master/dist/vuedraggable.min.js"></script> -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="components/custom-input.js"></script>
+	<script src="components/custom-modal.js"></script>
+	<script src="components/checkbox-question.js"></script>
+	<script src="lib/lib.js"></script>
+	<script src="lib/hotkeys.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>

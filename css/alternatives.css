@@ -1,0 +1,13 @@
+/* applies custom style to all alternatives */
+.alternatives {
+    margin-bottom: 10px;
+}
+
+/* overrides the style of each individual alternative type */
+.textarea {
+    margin-bottom: 20px;
+}
+
+.textfield {
+    margin-bottom: 20px;
+}
