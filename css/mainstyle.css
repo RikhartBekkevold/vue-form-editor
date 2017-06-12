@@ -83,6 +83,10 @@ td, th {
     display: block;
 }
 
+#form-container {
+    padding-bottom: 100px
+}
+
 .badge {
     color: black;
     background: white;
@@ -187,10 +191,13 @@ td, th {
     position: fixed;
     width: inherit;
     padding-right: 40px;
+    /*position: static;*/
 }
 
 #left-side-menu {
     position: fixed;
     width: inherit;
     padding-right: 20px;
+    /*position: static;*/
+
 }

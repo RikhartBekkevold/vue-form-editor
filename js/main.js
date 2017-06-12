@@ -1,3 +1,4 @@
+Vue.config.productionTip = false;
 var app = new Vue({
     el: '#app',
     data: {
@@ -33,7 +34,7 @@ var app = new Vue({
                     this.formList.push({type: "Radiobutton", label: '', alternatives: [{type: "Radiobutton", label: ''}]})
                     break;
                 case "Checkbox":
-                this.formList.push({type: "Checkbox", label: '', alternatives: [{type: "Checkbox", label: ''}]})
+                    this.formList.push({type: "Checkbox", label: '', alternatives: [{type: "Checkbox", label: ''}]})
                     break;
                 case "Textfield":
                     this.formList.push({type: "Textfield", alternatives: [{type: "Textfield"}]})
@@ -87,27 +88,26 @@ var app = new Vue({
             this.showModal = 'none'
         },
         saveForm: function() {
-            // GET request for remote image
-            axios({
-                method: 'get',
-                url: 'php/saveForm.php'
-            })
-            .then(function(response) {
-                console.log(response.data);
-                // console.log(response.status);
-                // console.log(response.statusText);
-                // console.log(response.headers);
-                // console.log(response.config);
-            });
-
+            var d = JSON.stringify(this.formList)
+            
             this.showModal = 'none'
         },
+        //returns the values to be cloned/deep cloned
         clone: function(el){
-            //returns the values to be cloned/deep cloned
-            return {
-                type: el.type, label: '',
-                alternatives: [{type: el.type, label: ''}]
-            };
+            if(el.type != 'Tittel') {
+                return {
+                    type: el.type, label: '',
+                    alternatives: [{type: el.type, label: ''}]
+                }
+            }
+            else {
+                return {
+                    type: el.type,
+                    label: '',
+                    desclabel: '',
+                    alternatives: [{type: el.type}]
+                }
+            }
         }
     }
 })

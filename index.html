@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="css/alternatives.css">
 	<link rel="stylesheet" href="css/components/modal.css">
 	<link rel="stylesheet" href="css/vue.css">
+	<link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
@@ -95,7 +96,7 @@
 
 
 		<!-- FORM -->
-		<div class="col-lg-5 col-md-9 col-sm-9">
+		<div id="form-container" class="col-lg-5 col-md-9 col-sm-9">
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#home">Edit</a></li>
 						<li><a data-toggle="tab" href="#menu1">Preview</a></li>
@@ -202,7 +203,7 @@
 
 										<div class="row">
 											<button v-if="question.type == 'Tittel'" v-on:click="toggle = !toggle" style="margin-left: 10px; font-weight: bold;" class="btn btn-default">
-												<i class="fa fa-plus" aria-hidden="true"></i>
+												<i style="color: #4b4f56" class="fa fa-plus" aria-hidden="true"></i>
 											</button>
 											<button v-if="question.type != 'Tittel'" style="margin-top: 80px; margin-left: 10px;" v-on:click="addQuestionAlternative(question)" class="btn btn-default">Add</button>
 										</div>
@@ -250,21 +251,21 @@
 												</div>
 												<!-- CHECKBOX -->
 												<div v-if="alt.type == 'Checkbox'" class="row">
-											        <div class="col-lg-1" style="margin-left: 15px">
+													<div class="col-lg-1" style="margin-left: 15px">
 														<!-- the checkbox -->
-											            <input
-											                type="checkbox"
-											                name="index">
-											            </input>
-											        </div>
-											        <div class="col-lg-10">
+														<input
+															type="checkbox"
+															name="index">
+														</input>
+													</div>
+													<div class="col-lg-10">
 														<!-- the label -->
-											            <div
-											               style="width: 90%">
+														<div
+														   style="width: 90%">
 														   {{alt.label}}
 													   </div>
-											        </div>
-											 	</div>
+													</div>
+												</div>
 												<!-- TEXTFIELD -->
 												<div v-if="alt.type == 'Textfield'" class="row textfield">
 													<div class="col-lg-10"  style="margin-left: 15px">
@@ -278,14 +279,9 @@
 												<!-- TEXTAREA -->
 												<div v-if="alt.type == 'Textarea'" class="row textarea">
 													<div class="col-lg-10"  style="margin-left: 15px">
-															<form class="pure-form">
-														<!-- <fieldset class="pure-group"> -->
-															<!-- <input type="text" class="pure-input-1-2" placeholder="A title"> -->
-																<textarea class="pure-input-1-2" style="width: 100%"></textarea>
-														<!-- </fieldset> -->
-															</form>
-
-														<!-- <textarea class="form-control custom-input" placeholder=""></textarea> -->
+														<form class="pure-form">
+															<textarea class="pure-input-1-2" style="width: 100%"></textarea>
+														</form>
 													</div>
 													<div class="col-lg-1" >
 													</div>
@@ -332,13 +328,13 @@
 				<div class="panel panel-default">
 			        <div class="panel-heading">Preferances</div>
 			        <div class="panel-body">
-						<!-- <table style="">
+						<table style="" class="table">
 							<tr>
 								<th>Prerequsite</th>
 								<th>Function</th>
 								<th>Key</th>
 							</tr>
-							<tr style="background: whitesmoke;">
+							<tr>
 								<td>Input field selected</td>
 								<td>Add new</td>
 								<td>Enter</td>
@@ -348,7 +344,7 @@
 								<td>Copy</td>
 								<td>alt + 4</td>
 							</tr>
-							<tr style="background: whitesmoke;">
+							<tr >
 								<td>None</td>
 								<td>Delete</td>
 								<td>alt + 3</td>
@@ -358,8 +354,8 @@
 								<td>Copy</td>
 								<td>alt + 4</td>
 							</tr>
-						</table> -->
-						{{formList}}
+						</table>
+						<!-- {{formList}} -->
 					</div>
 			    </div>
 			    <ul class="list-group">
@@ -367,7 +363,7 @@
 						<button @click="showModal = 'delete'" class="btn btn-default default-btn"><i class="glyphicon glyphicon-trash"></i></button>
 					</li>
 					<li class="list-group-item">
-						<button @click="showModal = 'finish'" class="btn btn-default default-btn"><i class="glyphicon glyphicon-share"></i></button>
+						<button @click="showModal = 'finish'" @dbclick="saveForm" class="btn btn-default default-btn"><i class="glyphicon glyphicon-share"></i></button>
 				  	</li>
 			    </ul>
 			</div>
@@ -386,8 +382,8 @@
 			<p v-if="showModal == 'delete'" style="text-align: center" slot="body">This will delete the entire form permanently</p>
 			<!-- FOOTER -->
 			<div v-if="showModal == 'delete'" slot="footer">
-				<button class="btn" @click="deleteForm">
-				Confirm
+				<button style="background: #FF715B" class="btn" @click="deleteForm">
+				Confirm <!-- FF715B B2301C-->
 				</button>
 				<button class="btn" @click="showModal = 'none'">
 				Deny
@@ -398,7 +394,7 @@
 
 	<script src="https://unpkg.com/vue"></script>
 	<script src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"></script>'
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.11.0/vuedraggable.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.11.0/vuedraggable.min.js"></script>
 
 	<!-- <script src="https://cdn.rawgit.com/David-Desmaisons/Vue.Draggable/master/dist/vuedraggable.min.js"></script> -->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -1,0 +1,7 @@
+.list-complete-item {
+  transition: all 1s;
+}
+
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+}
