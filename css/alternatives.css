@@ -1,13 +1,24 @@
 /* applies custom style to all alternatives */
 .alternatives {
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 /* overrides the style of each individual alternative type */
 .textarea {
-    margin-bottom: 20px;
+    padding-bottom: 60px;
 }
 
 .textfield {
-    margin-bottom: 20px;
+    padding-bottom: 60px;
+}
+
+.video {
+    padding-bottom: 60px;
+}
+
+.listinputfield {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
 }

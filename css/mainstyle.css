@@ -46,7 +46,10 @@ i:hover {
     color: #fff;
 }
 
+.option {
+    /*border-radius: 10px;*/
 
+}
 /*tags*/
 body {
     background: #f1f1f1;
@@ -77,6 +80,7 @@ td, th {
 /*form*/
 #form {
     min-height: 800px;
+    font-family: 'Libre Baskerville', serif;
 }
 
 #form li input {
@@ -84,7 +88,7 @@ td, th {
 }
 
 #form-container {
-    padding-bottom: 100px
+    padding-bottom: 100px;
 }
 
 .badge {
@@ -120,7 +124,7 @@ td, th {
     box-shadow: none;
     border-radius: 0px;
     border-bottom: 1px solid black;
-    border-color: #cccccc;
+    border-color: #42b983;
 }
 
 .question-input {
@@ -148,20 +152,6 @@ td, th {
 .panel-heading span, .panel-heading i {
     color: white;
 }
-
-.nav-tabs {
-    border-radius: 4px 4px 0px 0px;
-    background: #42b983;
-    /*opacity: 0.9;*/
-}
-
-.nav-tabs li a:hover, .nav-tabs li:hover {
-    background: #ddd;
-    color: #000;
-    border-color: #ddd;
-
-}
-
 
 
 #listitem {
@@ -200,4 +190,93 @@ td, th {
     padding-right: 20px;
     /*position: static;*/
 
+}
+
+.pure-form textarea:focus {
+        border-color: #42b983;
+
+}
+
+.pure-form input[type=text]:focus {
+        border-color: #42b983;
+
+}
+
+
+
+body {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+  color: #444;
+}
+
+table {
+  border: 1px solid #42b983;
+  border-radius: 3px;
+  background-color: #fff;
+  max-width: 200px;
+  overflow-x: scroll;
+}
+
+th {
+  background-color: #42b983;
+  color: rgba(255,255,255,0.66);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+th, td {
+  min-width: 120px;
+  padding: 10px 20px;
+}
+
+th.active {
+  color: #fff;
+}
+
+th.active .arrow {
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  opacity: 0.66;
+}
+
+.arrow.asc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #fff;
+}
+
+.arrow.dsc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+}
+
+
+
+.sortable-ghost2 {
+    cursor: move;
+    opacity: 0;
+}
+
+.choosenDragClass {
+    border: 1px solid #42b983;
+}
+
+textarea {
+    resize: none;
 }
