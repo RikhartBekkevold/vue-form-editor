@@ -50,6 +50,18 @@ i:hover {
     /*border-radius: 10px;*/
 
 }
+
+.nav>li>a:hover, .nav>li>a:focus {
+    background-color: transparent;
+    background-color: #B2301C;
+    opacity: 0.8;
+
+}
+.nav>li>a i:hover, .nav>li>a i:focus {
+   color: black;
+}
+
+
 /*tags*/
 body {
     background: #f1f1f1;
@@ -81,6 +93,7 @@ td, th {
 #form {
     min-height: 800px;
     font-family: 'Libre Baskerville', serif;
+    padding-bottom: 0px;
 }
 
 #form li input {
@@ -88,7 +101,7 @@ td, th {
 }
 
 #form-container {
-    padding-bottom: 100px;
+    padding-bottom: 0px;
 }
 
 .badge {
@@ -118,7 +131,7 @@ td, th {
     margin: 0px;
 }
 
-.form-control:focus{
+.form-control:focus {
     border-color: #cccccc;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -189,17 +202,14 @@ td, th {
     width: inherit;
     padding-right: 20px;
     /*position: static;*/
-
 }
 
 .pure-form textarea:focus {
-        border-color: #42b983;
-
+    border-color: #42b983;
 }
 
 .pure-form input[type=text]:focus {
-        border-color: #42b983;
-
+    border-color: #42b983;
 }
 
 
@@ -266,6 +276,21 @@ th.active .arrow {
   border-top: 4px solid #fff;
 }
 
+.arrow.asc:hover {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #000;
+   color: #000;
+}
+
+.arrow.dsc:hover {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+
+  border-top: 4px solid #000;
+   color: #000;
+}
+
 
 
 .sortable-ghost2 {
@@ -279,4 +304,85 @@ th.active .arrow {
 
 textarea {
     resize: none;
+}
+
+#form li:focus {
+    /*border: 1px solid red;*/
+    outline-color: #42b983;
+
+}
+
+#form li {
+    border: 0px;
+    border-radius: 0px;
+    /*border-bottom: 1px solid #ddd;*/
+    /*border-radius: 0px;*/
+    box-sizing: border-box;
+    /*outline: none;*/
+}
+
+
+
+.row-fluid {
+        display: block;
+        min-height: auto;
+        height: auto;
+        max-height: auto;
+        clear: both;
+
+}
+
+
+
+.effect4
+{
+  position: relative;
+}
+.effect4:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  right: 10px;
+  left: auto;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+
+
+.effect3
+{
+  position: relative;
+}
+.effect3:before
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
 }

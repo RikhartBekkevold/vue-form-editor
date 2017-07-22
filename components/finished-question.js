@@ -5,17 +5,17 @@
 
  <div>
       <!-- QUESTIONN -->
-      <div v-if="question.type != 'Tittel'" class="row" style="margin-bottom: 30px;">
-          <div class="col-lg-11">
-              <div style="font-size: 1.5em; margin-left: 10px;" class="question-input">{{question.label}}</div>
+      <div v-if="question.type != 'Tittel'" class="row" style="margin-bottom: 30px; font-family: 'Alfa Slab One', cursive; letter-spacing: 2px;">
+          <div class="col-lg-11" style="padding-left: 8px; padding-top: 8px;">
+              <div :style="{color: question.fColorHex}"  style="font-size: 1.5em; margin-left: 10px;" class="question-input">{{question.label}}</div>
           </div>
       </div>
 
       <!-- TITTEL -->
        <div v-if="question.type == 'Tittel'" class="row">
-            <div class="row">
-                <div class="col-lg-12" style="padding: 20px; text-align: center;">
-                    <div style="font-size: 1.9em; padding: 0px; margin: 0px;">{{question.label}}</div>
+            <div class="row-fluid" style="padding: 0px">
+                <div class="col-lg-12" style="display: block; width: 100%; padding: 20px; text-align: center;">
+                    <div style="text-align: center; font-size: 1.9em; padding: 0px; margin: 0px;">{{question.label}}</div>
                 </div>
             </div>
             <div class="row">
@@ -31,10 +31,10 @@
               <!-- RADIOBUTTON -->
               <div v-if="alt.type == 'Radiobutton'" class="row">
                   <div class="col-lg-1" style="margin-left: 15px">
-                      <input style="" type="radio" name="index"></input>
+                      <input   type="radio" name="index"></input>
                   </div>
                   <div class="col-lg-10">
-                      <div style="width: 90%">{{alt.label}}</div>
+                      <div :style="{color: question.fColorHex}"  style="width: 90%">{{alt.label}}</div>
                   </div>
               </div>
               <!-- CHECKBOX -->
@@ -42,6 +42,7 @@
                   <div class="col-lg-1" style="margin-left: 15px">
                       <!-- the checkbox -->
                       <input
+                          :style="{color: question.fColorHex}"
                           type="checkbox"
                           name="index">
                       </input>
@@ -77,9 +78,9 @@
               <!-- TEXTAREA -->
               <div v-if="alt.type == 'Textarea'" class="row textarea">
 
-                  <div class="row" style="margin-bottom: 20px">
+                  <div v-if="alt.label !== ''" class="row" style="margin-bottom: 20px">
 
-                      <div class="col-lg-10" style="padding-left: 48px">
+                      <div  class="col-lg-10" style="padding-left: 48px">
                           <div style="width: 90%">
                             {{alt.label}}
                           </div>
